@@ -1,0 +1,449 @@
+[
+    {
+        "iconUrl": "https://anm.cx/favicon.ico",
+        "fileHash": "sha256-5ad9746e36d8354edc52482da4c7306c1a83364f40e6c274b119400413c50e60",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 25612,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "keyiflerolsun",
+            "inatchii",
+            "JustRelaxable"
+        ],
+        "tvTypes": [
+            "Anime"
+        ],
+        "version": 21,
+        "internalName": "AnimeciX",
+        "description": "AnimeciX, animeleri ke\u015ffedebilece\u011finiz ve animeler hakk\u0131nda her \u015feyi \u00f6\u011frenebilece\u011finiz bir payla\u015f\u0131m platformudur.",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/AnimeciX.cs3",
+        "name": "AnimeciX"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=belgeselx.com&sz=%size%",
+        "fileHash": "sha256-b9c25980c00c08ae341228cb33f8a3bd37a7342a7418fd91b2dfd175d1421e33",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 22477,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "keyiflerolsun",
+            "JustRelaxable"
+        ],
+        "tvTypes": [
+            "Documentary"
+        ],
+        "version": 13,
+        "internalName": "BelgeselX",
+        "description": "En yeni belgeseller, t\u00fcrk\u00e7e altyaz\u0131l\u0131 yada dublaj olarak 1080p kalitesinde HD belgesel izle.",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/BelgeselX.cs3",
+        "name": "BelgeselX"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=tr.canlitv.team&sz=%size%",
+        "fileHash": "sha256-253bf4e63c5ccf50b688058777ba35fd83be1a5d891798aff0f6a139208b918c",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 20413,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "Adippe",
+            "keyiflerolsun"
+        ],
+        "tvTypes": [
+            "Live"
+        ],
+        "version": 10,
+        "internalName": "CanliTV",
+        "description": "Canl\u0131 TV",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/CanliTV.cs3",
+        "name": "CanliTV"
+    },
+    {
+        "iconUrl": "https://www.ddizi.im/favicon.ico",
+        "fileHash": "sha256-9466f31688ccb50d53858ce6cf3473d785099bdbf7fe83350fe8eba5af6005e3",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 20175,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "keyiflerolsun"
+        ],
+        "tvTypes": [
+            "TvSeries"
+        ],
+        "version": 10,
+        "internalName": "Ddizi",
+        "description": "DDizi.im i\u00e7in Cloudstream eklentisi",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/Ddizi.cs3",
+        "name": "Ddizi"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=www.dizibox.live&sz=%size%",
+        "fileHash": "sha256-4d88fc5c0cd5087bbc603976488efd5f729e1703ad0970d1824044f028f43d69",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 22884,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "keyiflerolsun"
+        ],
+        "tvTypes": [
+            "TvSeries"
+        ],
+        "version": 23,
+        "internalName": "DiziBox",
+        "description": "Yabanc\u0131 Dizi izle, T\u00fcm yabanc\u0131 dizilerin yeni ve eski sezonlar\u0131n\u0131 full hd izleyebilece\u011finiz elit site.",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/DiziBox.cs3",
+        "name": "DiziBox"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=www.dizimom.plus&sz=%size%",
+        "fileHash": "sha256-544aa7492640cdffe837237d437fb32443bc309c45eb50f7d29abf58f7bc0ab5",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 34275,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "keyiflerolsun"
+        ],
+        "tvTypes": [
+            "TvSeries"
+        ],
+        "version": 36,
+        "internalName": "DiziMom",
+        "description": "Binlerce yerli yabanc\u0131 dizi ar\u015fivi, t\u00fcm sezonlar, kesintisiz b\u00f6l\u00fcmler. Sadece dizi izle, Dizimom heryerde seninle!",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/DiziMom.cs3",
+        "name": "DiziMom"
+    },
+    {
+        "iconUrl": "https://cdn.diziyou6.com/wp-content/uploads/2020/04/diziyou-favicon.png",
+        "fileHash": "sha256-3158ba668d0f4589792d1e4d56f105af0c3e05ddc3909872b5c594f854948c68",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 17113,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "keyiflerolsun"
+        ],
+        "tvTypes": [
+            "TvSeries"
+        ],
+        "version": 24,
+        "internalName": "DiziYou",
+        "description": "Diziyou en kaliteli T\u00fcrk\u00e7e dublaj ve altyaz\u0131l\u0131 yabanc\u0131 dizi izleme sitesidir. G\u00fcncel ve efsanevi dizileri 1080p Full HD kalitede izlemek i\u00e7in hemen t\u0131kla!",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/DiziYou.cs3",
+        "name": "DiziYou"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=filmmakinesi.film&sz=%size%",
+        "fileHash": "sha256-cbce0ba9a6daf40af9b66d791e16c55aa94fc64aaa8f658e9bf66fcce9febdb0",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 17392,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "keyiflerolsun",
+            "usdogu"
+        ],
+        "tvTypes": [
+            "Movie"
+        ],
+        "version": 41,
+        "internalName": "FilmMakinesi",
+        "description": "Film Makinesi, en yeni ve en g\u00fcncel filmleri sitemizde full HD kalite fark\u0131 ile izleyebilirsiniz. HD film izle denildi\u011finde akla gelen en kaliteli film izleme sitesi.",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/FilmMakinesi.cs3",
+        "name": "FilmMakinesi"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=www.filmmodu17.com&sz=%size%",
+        "fileHash": "sha256-c8eaf204dd7a2474c52127016caf5a55739e9248020ff670d4b22ed29a483d05",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 16478,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "keyiflerolsun"
+        ],
+        "tvTypes": [
+            "Movie"
+        ],
+        "version": 15,
+        "internalName": "FilmModu",
+        "description": "Film modun geldiyse y\u00fcksek kalitede en yeni filmleri izle, 1080p izleyebilece\u011finiz reklamsiz film sitesi.",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/FilmModu.cs3",
+        "name": "FilmModu"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=fullhdfilm.us&sz=%size%",
+        "fileHash": "sha256-ba1f3649f234f0becace1eaf60091afcc53fdf84ea4b95d0946858b5f73c0f07",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 19351,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "keyiflerolsun"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 35,
+        "internalName": "FullHDFilm",
+        "description": "Fullhdfilm ile en yeni vizyon filmler Full HD ve kesintisiz film sizlerle. \u00d6zg\u00fcn film ar\u015fivimizle en \u00fcst\u00fcn kaliteli film izle keyfini sunuyoruz.",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/FullHDFilm.cs3",
+        "name": "FullHDFilm"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=www.fullhdfilmizlesene.de&sz=%size%",
+        "fileHash": "sha256-8de83f16f8469fa5fd246c8071808d1d2755ace5cd29f74f11fd1671180c2a27",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 38978,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "keyiflerolsun"
+        ],
+        "tvTypes": [
+            "Movie"
+        ],
+        "version": 27,
+        "internalName": "FullHDFilmizlesene",
+        "description": "Sinema zevkini evinize kadar getirdik. T\u00fcrkiye'nin lider Film sitesinde, en yeni filmleri Full HD izleyin.",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/FullHDFilmizlesene.cs3",
+        "name": "FullHDFilmizlesene"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=fullporner.com&sz=%size%",
+        "fileHash": "sha256-beaed69b1efd28794b9a86e68fad65cd99352af96a1a4383846eebb15a686ed0",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 14126,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Coxju, megix"
+        ],
+        "tvTypes": [
+            "NSFW"
+        ],
+        "version": 2,
+        "internalName": "FullPorner",
+        "description": "FullPorner is the best free full length porn video site. Choose from millions of hardcore videos that stream quickly and in high quality and only full length",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/FullPorner.cs3",
+        "name": "FullPorner"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=hdabla.net&sz=%size%",
+        "fileHash": "sha256-60f9638ae56a76588d72304ab7335534eab1e9d61409afff27a13a178ab741cd",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 15484,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "kerimmkirac"
+        ],
+        "tvTypes": [
+            "NSFW"
+        ],
+        "version": 3,
+        "internalName": "HdAbla",
+        "description": "Porno film izlemek i\u00e7in HdAbla sitesini ziyaret edin. Keyifle mobil siki\u015f seyret. Sex ve rokettube seks videolar\u0131n\u0131 g\u00fcncel olarak Full HD kalitede bedava adult porn sunuyoruz",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/HdAbla.cs3",
+        "name": "HdAbla"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=hdfilmcehennemi.com&sz=%size%",
+        "fileHash": "sha256-1f5ebc0fc80ac1f864e8361925dffe909a7fb47168c0a2b4d4c31967e9662b42",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 30897,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "hexated",
+            "keyiflerolsun"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 24,
+        "internalName": "HDFilmCehennemi",
+        "description": "T\u00fcrkiye'nin en h\u0131zl\u0131 hd film izleme sitesi",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/HDFilmCehennemi.cs3",
+        "name": "HDFilmCehennemi"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=www.kalite18.net&sz=%size%",
+        "fileHash": "sha256-14ca405eb9ea5b41ccb54c6400b68e315fa1ca0e82f6451007e15985ad3f4b46",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 14263,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "kerimmkirac"
+        ],
+        "tvTypes": [
+            "NSFW"
+        ],
+        "version": 2,
+        "internalName": "Kalite18",
+        "description": "Kalite18, sizlere porno filmleri HD kalite ve t\u00fcrk\u00e7e altyaz\u0131l\u0131 olarak izleme keyfi sunmaktad\u0131r. Porno ve sex filmlerini anlayarak 31 \u00e7ekmenin keyfini \u00e7\u0131kar\u0131n.",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/Kalite18.cs3",
+        "name": "Kalite18"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=pornoanne.com&sz=%size%",
+        "fileHash": "sha256-a2997be5d1ac8c09cc202adb3d2ad6ffafaba5a5719c1474a91dc30ed77ffb9c",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 12781,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "kerimmkirac"
+        ],
+        "tvTypes": [
+            "NSFW"
+        ],
+        "version": 3,
+        "internalName": "PornoAnne",
+        "description": "Porno Anne ile en kaliteli HD porno filmleri burada! Sex videolar\u0131 ve siki\u015f sahneleri ile dolu anlara \u00fccretsiz porno izle yazarak ula\u015f ve siki\u015f seyret.",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/PornoAnne.cs3",
+        "name": "PornoAnne"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=rarefilmm.com&sz=%size%",
+        "fileHash": "sha256-acbc14b364a67db107783ca57774a4b8ec07c0063594807f3e045e666a640914",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 16431,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "keyiflerolsun"
+        ],
+        "tvTypes": [
+            "Movie"
+        ],
+        "version": 3,
+        "internalName": "RareFilmm",
+        "description": "The Cave of Forgotten Films",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/RareFilmm.cs3",
+        "name": "RareFilmm"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=sezonlukdizi6.com&sz=%size%",
+        "fileHash": "sha256-43fe0564aa3300f162b61792f403d37961cf661796b75ae6f4f284d69706000a",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 20452,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "keyiflerolsun",
+            "JustRelaxable"
+        ],
+        "tvTypes": [
+            "TvSeries"
+        ],
+        "version": 6,
+        "internalName": "SezonlukDizi",
+        "description": "G\u00fcncel ve eski dizileri en iyi g\u00f6r\u00fcnt\u00fc kalitesiyle bulabilece\u011finiz yabanc\u0131 dizi izleme siteniz.",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/SezonlukDizi.cs3",
+        "name": "SezonlukDizi"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=www.turkanime.co&sz=%size%",
+        "fileHash": "sha256-8b1abe2bae3bca28383a5dbaad86ece93f9889b09147d0ac032d58e56adbd180",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 19289,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "keyiflerolsun"
+        ],
+        "tvTypes": [
+            "Anime"
+        ],
+        "version": 15,
+        "internalName": "TurkAnime",
+        "description": "T\u00fcrk Anime TV - T\u00fcrkiye'nin Online Anime izleme sitesi.",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/TurkAnime.cs3",
+        "name": "TurkAnime"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=webteizle2.com&sz=%size%",
+        "fileHash": "sha256-2be35001ae29503a17357c7cb09d3e49c7748eeaf837fdfcd94ce8a98d86cbac",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 23830,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "keyiflerolsun"
+        ],
+        "tvTypes": [
+            "Movie"
+        ],
+        "version": 15,
+        "internalName": "WebteIzle",
+        "description": "Her t\u00fcrl\u00fc filmi ister dublaj ister altyaz\u0131l\u0131, en kaliteli bir \u015fekilde izleyebilece\u011finiz ar\u015fivi en geni\u015f ger\u00e7ek film izleme siteniz.",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/WebteIzle.cs3",
+        "name": "WebteIzle"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=https://vi.xhspot.com&sz=256",
+        "fileHash": "sha256-d3baa81a332bea28036bdf4f0364026d0b3bbf2b6fa2ea459dc33a87646ddc26",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 29348,
+        "status": 1,
+        "language": "vi",
+        "authors": [
+            "SIX"
+        ],
+        "tvTypes": [
+            "NSFW"
+        ],
+        "version": 1,
+        "internalName": "Xhamster",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/Xhamster.cs3",
+        "name": "Xhamster"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=https://www.xnxx.com&sz=256",
+        "fileHash": "sha256-9d424d055f2ade3ff282c0c216a59ab5ae18115da23c541019271635964a599f",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/esender1/cs-Kekik",
+        "fileSize": 26276,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "SIX"
+        ],
+        "tvTypes": [
+            "NSFW"
+        ],
+        "version": 2,
+        "internalName": "XNXX",
+        "url": "https://raw.githubusercontent.com/esender1/cs-Kekik/builds/XNXX.cs3",
+        "name": "XNXX"
+    }
+]
