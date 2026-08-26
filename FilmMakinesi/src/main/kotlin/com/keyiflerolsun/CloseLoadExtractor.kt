@@ -16,18 +16,23 @@ class CloseLoad : ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ) {
+        // ! mainUrl eski domaini gosteriyor (closeload.filmmakinesi.sh); canli oynatici
+        // ! .to uzerinde. Referer/Origin'i sabit yazmak yerine gercek istek adresinden
+        // ! turetiyoruz ki site bir daha tasindiginda kendiliginden dogru kalsin.
+        val oynaticiKok = Regex("""^(https?://[^/]+)""").find(url)?.groupValues?.get(1) ?: mainUrl
+
         val headers2 = mapOf(
             "User-Agent" to "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0",
-            "Referer" to "https://closeload.filmmakinesi.sh/",
-            "Origin" to "https://closeload.filmmakinesi.sh"
+            "Referer" to "$oynaticiKok/",
+            "Origin" to oynaticiKok
         )
-        
+
         try {
-            val response = app.get(url, referer = mainUrl, headers = headers2)
+            val response = app.get(url, referer = oynaticiKok, headers = headers2)
             val document = response.document
 
             // JSON-LD'den video URL'sini çıkar
-            extractFromJsonLd(document, callback)
+            extractFromJsonLd(document, callback, oynaticiKok)
             
             // Altyazıları işle
             processSubtitles(document, subtitleCallback)
@@ -38,7 +43,11 @@ class CloseLoad : ExtractorApi() {
         }
     }
 
-    private suspend fun extractFromJsonLd(document: Document, callback: (ExtractorLink) -> Unit) {
+    private suspend fun extractFromJsonLd(
+        document: Document,
+        callback: (ExtractorLink) -> Unit,
+        oynaticiKok: String
+    ) {
         val jsonLdScript = document.select("script[type=application/ld+json]").firstOrNull()
         if (jsonLdScript != null) {
             val jsonLd = jsonLdScript.data()
@@ -56,7 +65,7 @@ class CloseLoad : ExtractorApi() {
                             type = ExtractorLinkType.M3U8
                         ) {
                             quality = Qualities.Unknown.value
-                            headers = mapOf("Referer" to "${mainUrl}/")
+                            headers = mapOf("Referer" to "$oynaticiKok/")
                         }
                     )
                 }
