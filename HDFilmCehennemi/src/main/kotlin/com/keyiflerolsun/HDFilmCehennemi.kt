@@ -2,6 +2,7 @@
 
 package com.keyiflerolsun
 
+import android.util.Base64
 import android.util.Log
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.DeserializationFeature
@@ -206,31 +207,87 @@ class HDFilmCehennemi : MainAPI() {
         }
     }
 
-    private fun dcHello(base64Input: String): String {
-        val decodedOnce = base64Decode(base64Input)
-        val reversedString = decodedOnce.reversed()
-        val decodedTwice = base64Decode(reversedString)
+    /**
+     * ! Site artik sabit bir "dc_hello" fonksiyonu kullanmiyor.
+     * ! Her istekte fonksiyon adi, adim sirasi ve sabitler RASTGELE uretiliyor
+     * ! (ornek: dc_Nuhn3BQb0ms / dc_lAe3RSMiqho). Bu yuzden sabit kodlanmis
+     * ! bir cozucu calismiyor ve eski kod Base64 hatasiyla cokuyordu.
+     *
+     * Cozum: packed script acildiktan sonra fonksiyon govdesindeki adimlari
+     * SIRAYLA okuyup Kotlin'de uyguluyoruz. Gozlemlenen islem dagarcigi kucuk
+     * ve kapali: reverse | atob | rot(k) | unmix(sabit, ofset)
+     *
+     * Taninmayan bir adim cikarsa null doner (cokmez) - site yine degisirse
+     * o kaynak atlanir, digerleri denenmeye devam eder.
+     */
+    private fun dcCoz(unpacked: String): String? {
+        val govde = unpacked.substringAfter("{", "").substringBefore("return")
+        if (govde.isBlank()) return null
 
-        val hdchLink    = if (decodedTwice.contains("+")) {
-        decodedTwice.substringAfterLast("+")
-            } else if (decodedTwice.contains(" ")) {
-        decodedTwice.substringAfterLast(" ")
-            } else if (decodedTwice.contains("|")){
-        decodedTwice.substringAfterLast("|")
-            } else {
-        decodedTwice
+        // dc_XXX([ "parca1", "parca2", ... ]) cagrisindaki parcalari birlestir
+        val parcaBloku = Regex("""dc_\w+\(\s*\[(.*?)\]\s*\)""", RegexOption.DOT_MATCHES_ALL)
+            .find(unpacked)?.groupValues?.get(1) ?: return null
+        var sonuc = Regex(""""([^"]*)"""").findAll(parcaBloku)
+            .joinToString("") { it.groupValues[1] }
+        if (sonuc.isBlank()) return null
+
+        // Govdedeki her "result = ..." atamasini yazildigi sirayla uygula
+        Regex("""result\s*=\s*([^;]+);""").findAll(govde).forEach { eslesme ->
+            val ifade = eslesme.groupValues[1].trim()
+            sonuc = when {
+                ifade == "value"                -> sonuc          // ilk atama, islem degil
+                ifade.contains("atob(result)")  ->
+                    // ISO_8859_1: JS'in atob'u gibi her bayti tek karaktere esle
+                    runCatching { String(Base64.decode(sonuc, Base64.DEFAULT), Charsets.ISO_8859_1) }
+                        .getOrNull() ?: return null
+                ifade.contains("reverse()")     -> sonuc.reversed()
+                ifade.contains("fromCharCode")  -> {
+                    val kaydirma = Regex("""[+\-](\d+)\s*\)\s*%\s*26""").find(ifade)
+                        ?.groupValues?.get(1)?.toIntOrNull() ?: return null
+                    harfKaydir(sonuc, kaydirma)
+                }
+                else -> return null   // taninmayan adim
             }
-        Log.d("HDCH", "decodedTwice $decodedTwice")
-             return hdchLink
         }
+
+        // Son adim (varsa): pozisyona bagli karakter kaydirma
+        Regex("""charCode\s*-\s*\((\d+)\s*%\s*\(\s*i\s*\+\s*(\d+)\s*\)\)""").find(govde)?.let { m ->
+            val sabit = m.groupValues[1].toLongOrNull() ?: return@let
+            val ofset = m.groupValues[2].toIntOrNull() ?: return@let
+            sonuc = buildString {
+                sonuc.forEachIndexed { i, karakter ->
+                    val kod = ((karakter.code - (sabit % (i + ofset)).toInt()) % 256 + 256) % 256
+                    append(kod.toChar())
+                }
+            }
+        }
+
+        return sonuc.takeIf { it.contains("http") }
+    }
+
+    /** JS'teki harf kaydirma: (o - taban + k) % 26 + taban, buyuk/kucuk ayri */
+    private fun harfKaydir(metin: String, k: Int): String = buildString {
+        metin.forEach { c ->
+            when (c) {
+                in 'A'..'Z' -> append((((c.code - 65 + k) % 26) + 65).toChar())
+                in 'a'..'z' -> append((((c.code - 97 + k) % 26) + 97).toChar())
+                else        -> append(c)
+            }
+        }
+    }
 
     private suspend fun invokeLocalSource(source: String, url: String, subtitleCallback: (SubtitleFile) -> Unit, callback: (ExtractorLink) -> Unit ) {
         val script    = app.get(url, referer = "${mainUrl}/", interceptor = interceptor).document.select("script").find { it.data().contains("sources:") }?.data() ?: return
 		Log.d("HDCH", "script » $script")
-        val videoData = getAndUnpack(script).substringAfter("file_link=\"").substringBefore("\";")
-		Log.d("HDCH", "videoData » $videoData")
-        val base64Input = videoData.substringAfter("dc_hello(\"").substringBefore("\");")
-        val lastUrl = dcHello(base64Input).substringAfter("https").let { "https$it" }
+        val videoData = runCatching { getAndUnpack(script) }.getOrNull() ?: return
+		Log.d("HDCH", "unpacked » ${videoData.take(160)}")
+        // ! Eskiden: dc_hello("...") sabiti aranirdi. Artik fonksiyon adi rastgele
+        // ! oldugu icin adimlari dcCoz() govdeden okuyup uyguluyor.
+        val cozulen = dcCoz(videoData) ?: run {
+            Log.w("HDCH", "video url cozulemedi, kaynak atlaniyor: $url")
+            return
+        }
+        val lastUrl = cozulen.substringAfter("https").let { "https$it" }
         val subData   = script.substringAfter("tracks: [").substringBefore("]")
 		Log.d("HDCH", "subData » $subData")
         AppUtils.tryParseJson<List<SubSource>>("[${subData}]")?.filter { it.kind == "captions"}?.map {

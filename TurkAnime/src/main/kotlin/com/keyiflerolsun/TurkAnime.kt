@@ -128,11 +128,24 @@ class TurkAnime : MainAPI() {
     }
 
     private suspend fun iframe2AesLink(iframe: String): String? {
-        var aesData = iframe.substringAfter("embed/#/url/").substringBefore("?status")
-        aesData     = String(Base64.decode(aesData, Base64.DEFAULT))
+        // ! substringAfter() ayraci bulamazsa TUM metni geri verir; eski kod bunu
+        // ! dogrudan Base64.decode'a gecirdigi icin "bad base-64" ile cokuyordu ve
+        // ! cagiran dongudeki DIGER oynaticilar hic denenmeden eleniyordu.
+        // ! Artik ayrac yoksa null donuyoruz, dongu bir sonraki kaynaga geciyor.
+        if (!iframe.contains("embed/#/url/")) {
+            Log.d("TRANM", "beklenen iframe bicimi degil, atlaniyor » $iframe")
+            return null
+        }
+
+        val hamVeri = iframe.substringAfter("embed/#/url/").substringBefore("?status")
+        val aesData = runCatching { String(Base64.decode(hamVeri, Base64.DEFAULT)) }.getOrNull()
+            ?: run { Log.d("TRANM", "base64 cozulemedi » ${hamVeri.take(60)}"); return null }
 
         val aesKey  = "710^8A@3@>T2}#zN5xK?kR7KNKb@-A!LzYL5~M1qU0UfdWsZoBm4UUat%}ueUv6E--*hDPPbH7K2bp9^3o41hw,khL:}Kx8080@M"
-        val aesLink = AesHelper.cryptoAESHandler(aesData, aesKey.toByteArray(), false)?.replace("\\", "") ?: throw ErrorLoadingException("failed to decrypt")
+        // ! throw yerine null: tek bir kaynagin cozulememesi tum eklentiyi dusurmemeli
+        val aesLink = runCatching {
+            AesHelper.cryptoAESHandler(aesData, aesKey.toByteArray(), false)?.replace("\\", "")
+        }.getOrNull() ?: run { Log.d("TRANM", "AES cozulemedi"); return null }
 
         return fixUrlNull(aesLink.replace("\"", ""))
     }

@@ -151,27 +151,20 @@ class HdAbla : MainAPI() {
                                 Log.d("HdAbla", "video url » $videoUrl")
 
 
-                                val headers = if (videoUrl.contains(".mp4")) {
-                                    mapOf(
-                                        "Host" to "sv4.memriosa.cloud",
-                                        "Connection" to "keep-alive",
-                                        "sec-ch-ua-platform" to "\"Windows\"",
-                                        "Accept-Encoding" to "identity;q=1, *;q=0",
-                                        "User-Agent" to "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
-                                        "sec-ch-ua" to "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Brave\";v=\"138\"",
-                                        "sec-ch-ua-mobile" to "?0",
-                                        "Accept" to "*/*",
-                                        "Sec-GPC" to "1",
-                                        "Accept-Language" to "tr-TR,tr;q=0.8",
-                                        "Sec-Fetch-Site" to "cross-site",
-                                        "Sec-Fetch-Mode" to "no-cors",
-                                        "Sec-Fetch-Dest" to "video",
-                                        "Sec-Fetch-Storage-Access" to "none",
-                                        "Referer" to "https://wai.moonfast.site/"
-                                    )
-                                } else {
-                                    mapOf("Referer" to mainUrl)
-                                }
+                                // ! Eskiden "Host" ve "Referer" sabit kodluydu
+                                // ! (sv4.memriosa.cloud / wai.moonfast.site). Video baska bir
+                                // ! sunucuya tasininca yanlis Host gonderiliyor ve CDN 403 donuyordu.
+                                // ! Olcum: sabit basliklar -> HTTP 403 | iframe'den turetilen
+                                // ! Referer -> HTTP 206. Bu yuzden ikisi de artik turetiliyor.
+                                val oynaticiKok = Regex("""^(https?://[^/]+)""")
+                                    .find(fullIframeUrl)?.groupValues?.get(1) ?: mainUrl
+
+                                val headers = mapOf(
+                                    "User-Agent"      to "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+                                    "Accept"          to "*/*",
+                                    "Accept-Language" to "tr-TR,tr;q=0.8",
+                                    "Referer"         to "$oynaticiKok/"
+                                )
 
                                 callback.invoke(
 
@@ -185,7 +178,7 @@ class HdAbla : MainAPI() {
 
                                         ){
                                             this.headers = headers
-                                            this.referer = if (videoUrl.contains(".mp4")) "https://wai.moonfast.site/" else mainUrl
+                                            this.referer = "$oynaticiKok/"
                                             this.quality = Qualities.P720.value
                                         }
                                     )

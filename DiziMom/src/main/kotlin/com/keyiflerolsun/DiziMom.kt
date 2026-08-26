@@ -147,12 +147,15 @@ class DiziMom : MainAPI() {
         val document = app.get(data, headers=ua, interceptor = interceptor).document
 
         val iframes     = mutableListOf<String>()
-        val mainIframe = document.selectFirst("div.video p iframe")?.attr("src") ?: return false
+        // ! Sayfada iki iframe var: ilkinin src'si "about:blank" (JS ile doldurulacak),
+        // ! gercek oynatici adresi ikincisinde / <noscript> icinde duruyor.
+        // ! selectFirst() her zaman "about:blank" aldigi icin hic link uretilemiyordu.
+        val mainIframe = gercekIframe(document) ?: return false
         iframes.add(mainIframe)
 
         document.select("div.sources a").forEach {
             val subDocument = app.get(it.attr("href"), headers=ua, interceptor = interceptor).document
-            val subIframe   = subDocument.selectFirst("div.video p iframe")?.attr("src") ?: return@forEach
+            val subIframe   = gercekIframe(subDocument) ?: return@forEach
 
             iframes.add(subIframe)
         }
@@ -163,5 +166,23 @@ class DiziMom : MainAPI() {
         }
 
         return true
+    }
+
+    /**
+     * Sayfadaki GERCEK oynatici adresini bulur.
+     *
+     * Site iki iframe basiyor: gorunen olanin src'si "about:blank" olup JS ile
+     * dolduruluyor, calisan adres ise ikinci iframe'de / <noscript> blogunda.
+     * Once http ile baslayan bir iframe src'si aranir; Jsoup <noscript> icerigini
+     * duz metin olarak ayristirabildigi icin bulunamazsa ham HTML'de regex ile aranir.
+     */
+    private fun gercekIframe(document: org.jsoup.nodes.Document): String? {
+        document.select("div.video iframe, div.video p iframe, iframe")
+            .map { it.attr("src") }
+            .firstOrNull { it.startsWith("http") }
+            ?.let { return it }
+
+        return Regex("""https?://[^\s"'<>]+/(?:tv/)?video/[A-Za-z0-9]+""")
+            .find(document.html())?.value
     }
 }
