@@ -100,17 +100,32 @@ class BelgeselX : MainAPI() {
     override suspend fun load(url: String): LoadResponse? {
         val document = app.get(url).document
 
-        val title       = document.selectFirst("h2.gen-title")?.text()?.trim()?.toTitleCase() ?: return null
-        val poster      = fixUrlNull(document.selectFirst("div.gen-tv-show-top img")?.attr("src")) ?: return null
-        val description = document.selectFirst("div.gen-single-tv-show-info p")?.text()?.trim()
-        val tags        = document.select("div.gen-socail-share a[href*='belgeselkanali']").map { it.attr("href").split("/").last().replace("-", " ").toTitleCase() }
+        // ! Site temasi "gen-*" sinifindan "px-*" sinifina tasindi; eski secicilerin
+        // ! hicbiri tutmuyordu ve load() null donuyordu (detay sayfasi hic acilmiyordu).
+        // ! Once yeni secici, tutmazsa eskisi denenir; ikisi de tutmazsa genel yedek.
+        val title       = (document.selectFirst("h1.px-hero-title")
+            ?: document.selectFirst("h2.gen-title")
+            ?: document.selectFirst("h1"))?.text()?.trim()?.toTitleCase() ?: return null
+
+        val poster      = fixUrlNull(
+            (document.selectFirst("div.px-dizi-card-poster img")
+                ?: document.selectFirst("div.gen-tv-show-top img"))
+                ?.let { it.attr("data-src").ifBlank { it.attr("src") } }
+        )
+
+        val description = (document.selectFirst("div.px-hero-desc")
+            ?: document.selectFirst("div.gen-single-tv-show-info p"))?.text()?.trim()
+
+        val tags        = document.select("a[href*='belgeselkanali']").map { it.attr("href").split("/").last().replace("-", " ").toTitleCase() }
 
         var counter  = 0
-        val episodes = document.select("div.gen-movie-contain").mapNotNull {
-            val epName     = it.selectFirst("div.gen-movie-info h3 a")?.text()?.trim() ?: return@mapNotNull null
-            val epHref     = fixUrlNull(it.selectFirst("div.gen-movie-info h3 a")?.attr("href")) ?: return@mapNotNull null
+        val episodes = document.select("a.px-ep-card, div.gen-movie-contain").mapNotNull {
+            // Yeni temada kartin kendisi <a>; eski temada icinde <a> vardi.
+            val epLink     = if (it.tagName() == "a") it else it.selectFirst("div.gen-movie-info h3 a")
+            val epName     = epLink?.text()?.trim()?.ifBlank { null } ?: return@mapNotNull null
+            val epHref     = fixUrlNull(epLink.attr("href")) ?: return@mapNotNull null
 
-            val seasonName = it.selectFirst("div.gen-single-meta-holder ul li")?.text()?.trim() ?: ""
+            val seasonName = it.selectFirst("div.gen-single-meta-holder ul li")?.text()?.trim() ?: epName
             var epEpisode  = Regex("""Bölüm (\d+)""").find(seasonName)?.groupValues?.get(1)?.toIntOrNull() ?: 0
             val epSeason   = Regex("""Sezon (\d+)""").find(seasonName)?.groupValues?.get(1)?.toIntOrNull() ?: 1
 
