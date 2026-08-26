@@ -21,5 +21,6 @@ cloudstream {
     )
     iconUrl = "https://www.google.com/s2/favicons?domain=https://www.xnxx.com&sz=256"
 
-    isCrossPlatform = true
+    // isCrossPlatform = true
+    // ! Kapatildi: modulun kodu Android API'si kullaniyor (bkz. ensureJarCompatibility).
 }

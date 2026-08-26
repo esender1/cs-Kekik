@@ -21,5 +21,7 @@ cloudstream {
     )
     iconUrl = "https://www.google.com/s2/favicons?domain=https://vi.xhspot.com&sz=256"
 
-    isCrossPlatform = true
+    // isCrossPlatform = true
+    // ! Kapatildi: modulun kodu android.content.Context ve android.util.Log kullaniyor.
+    // ! Cross-platform JAR'da Android import'u olamaz -> ensureJarCompatibility gorevi hata veriyordu.
 }
